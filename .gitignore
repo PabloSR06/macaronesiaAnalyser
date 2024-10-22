@@ -1,0 +1,6 @@
+.env
+.vscode
+.conda
+__pycache__
+recognizer/json/old
+recognizer/pdf/oldpdf

@@ -1,0 +1,30 @@
+services:
+    phpmyadmin:
+        image: phpmyadmin:latest
+        restart: always
+        ports:
+            - 8000:80
+        environment:
+            PMA_HOST: mysql
+    mysql:
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - "3307:3306"
+        volumes:
+            - data:/var/lib/mysql
+    # api:
+    #     build: .
+    #     restart: always
+    #     ports:
+    #         - "5000:5000"
+    #     volumes:
+    #         - .:/app
+    #     command: python /app/app.py
+    #     env_file:
+    #         - .env
+volumes:
+    data:
+        driver: local

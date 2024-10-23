@@ -1,6 +1,9 @@
 import json
 import datetime
 import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from mySqlClient import MySqlClient
 
 def process_json(json_path, default_location, default_year):
@@ -12,7 +15,7 @@ def process_json(json_path, default_location, default_year):
 
     filename = json_path.split('/')[-1]
 
-    mysql_client = MySqlClient()
+    mysql_client = MySqlClient.get_instance()
     mysql_client.create_connection()
     for idx, document in enumerate(result.get('analyzeResult', {}).get('documents', [])):
         

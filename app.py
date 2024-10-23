@@ -1,17 +1,11 @@
 from flask import Flask, jsonify, request
-from azureOpenAIClient import AzureOpenAIClient
-from db import get_archer_scores
+from json.old.azureOpenAIClient import AzureOpenAIClient
+
 from recognizer.saveInDatabase import json_to_database # type: ignore
 
 
 app = Flask(__name__)
 
-@app.route('/api/points/<archer_name>', methods=['GET'])
-def get_data(archer_name):
-    scores = get_archer_scores(archer_name)
-    if scores is None:
-        return jsonify({"error": "No se pudo obtener los puntos del arquero"}), 500
-    return jsonify(scores)
 
 @app.route('/api/ask/<question>', methods=['GET'])
 def ask_for_data(question):

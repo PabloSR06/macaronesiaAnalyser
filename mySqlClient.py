@@ -1,12 +1,25 @@
 import mysql.connector
 import os
 
-
 class MySqlClient:
-    def __init__(self):
+    _instance = None
 
-        self.cursor = None
-        self.conn = None
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(MySqlClient, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+    def __init__(self):
+        if not hasattr(self, 'initialized'):
+            self.cursor = None
+            self.conn = None
+            self.initialized = True
+
+    @classmethod
+    def get_instance(cls):
+        if cls._instance is None:
+            cls._instance = MySqlClient()
+        return cls._instance
 
     def get_reader_connection(self):
         return mysql.connector.connect(
@@ -44,17 +57,18 @@ class MySqlClient:
             except mysql.connector.Error as err:
                 print(f"Error: No se pudo crear la base de datos: {err}")
 
-
     def close_connection(self):
-        self.cursor.close()
-        self.conn.close()
+        if self.cursor:
+            self.cursor.close()
+        if self.conn:
+            self.conn.close()
 
     def get_club_id(self, club_name):
         self.cursor.execute("SELECT id FROM clubs WHERE name = %s", (club_name,))
         result = self.cursor.fetchone()
         if result:
             return result[0]
-        
+
         self.cursor.execute("INSERT INTO clubs (name) VALUES (%s)", (club_name,))
         self.conn.commit()
         return self.cursor.lastrowid

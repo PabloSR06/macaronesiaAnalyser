@@ -19,8 +19,8 @@ def ask_for_data(question=None):
         return jsonify({'error': 'No question provided'}), 400
 
 
-    azure_client = AzureOpenAIClient()
-    response = azure_client.gerResponse(question)
+    azure_client = AzureOpenAIClient.get_instance()
+    response = azure_client.get_response(question)
 
     if response is None:
         return jsonify({"error": "No se pudo obtener datos"}), 500

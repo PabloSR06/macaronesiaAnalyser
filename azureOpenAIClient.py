@@ -10,73 +10,86 @@ from mySqlClient import MySqlClient
 load_dotenv()
 
 class AzureOpenAIClient:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(AzureOpenAIClient, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+    
     def __init__(self):
+        if not hasattr(self, 'initialized'): 
+            self.endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+            self.deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+            self.model = os.getenv("AZURE_OPENAI_MODEL")
+            self.key = os.getenv("AZURE_OPENAI_KEY")
+            self.api_version = os.getenv("AZURE_OPENAI_VERSION")
 
-        self.endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-        self.deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
-        self.model = os.getenv("AZURE_OPENAI_MODEL")
-        self.key = os.getenv("AZURE_OPENAI_KEY")
-        self.api_version = os.getenv("AZURE_OPENAI_VERSION")
+            self.client = AzureOpenAI(azure_endpoint=self.endpoint, api_key=self.key, api_version=self.api_version)
+            
+            self.sql_client = MySqlClient.get_instance()
 
-        self.client = AzureOpenAI(azure_endpoint=self.endpoint, api_key=self.key, api_version=self.api_version)
-        
-        self.sql_client = MySqlClient.get_instance()
+            self.sql_script = """
+    -- Clubs Table
+    CREATE TABLE IF NOT EXISTS clubs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL UNIQUE
+    );
 
-        self.sql_script = """
--- Clubs Table
-CREATE TABLE IF NOT EXISTS clubs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
-);
+    -- Archers Table
+    CREATE TABLE IF NOT EXISTS archers (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        club_id INT NOT NULL,
+        FOREIGN KEY (club_id) REFERENCES clubs(id),
+        registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
 
--- Archers Table
-CREATE TABLE IF NOT EXISTS archers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    club_id INT NOT NULL,
-    FOREIGN KEY (club_id) REFERENCES clubs(id),
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    -- Categories Table
+    CREATE TABLE IF NOT EXISTS categories (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50) NOT NULL UNIQUE
+    );
 
--- Categories Table
-CREATE TABLE IF NOT EXISTS categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL UNIQUE
-);
+    -- Seasons Table
+    CREATE TABLE IF NOT EXISTS seasons (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        year YEAR NOT NULL,
+        location VARCHAR(50) NOT NULL,
+        UNIQUE (year, location)
+    );
 
--- Seasons Table
-CREATE TABLE IF NOT EXISTS seasons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    year YEAR NOT NULL,
-    location VARCHAR(50) NOT NULL,
-    UNIQUE (year, location)
-);
+    -- Rounds Table
+    CREATE TABLE IF NOT EXISTS rounds  (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        season_id INT NOT NULL,
+        round_number INT NOT NULL,
+        round_date DATE NULL,
+        FOREIGN KEY (season_id) REFERENCES seasons(id),
+        UNIQUE (season_id, round_number)
+    );
 
--- Rounds Table
-CREATE TABLE IF NOT EXISTS rounds  (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    season_id INT NOT NULL,
-    round_number INT NOT NULL,
-    round_date DATE NULL,
-    FOREIGN KEY (season_id) REFERENCES seasons(id),
-    UNIQUE (season_id, round_number)
-);
+    -- Round Results Table
+    CREATE TABLE IF NOT EXISTS results (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        round_id INT NOT NULL,
+        archer_id INT NOT NULL,
+        category_id INT NOT NULL,
+        score INT NOT NULL,
+        FOREIGN KEY (round_id) REFERENCES rounds(id),
+        FOREIGN KEY (archer_id) REFERENCES archers(id),
+        FOREIGN KEY (category_id) REFERENCES categories(id),
+        UNIQUE (round_id, archer_id, category_id)
+    );
+    """
 
--- Round Results Table
-CREATE TABLE IF NOT EXISTS results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    round_id INT NOT NULL,
-    archer_id INT NOT NULL,
-    category_id INT NOT NULL,
-    score INT NOT NULL,
-    FOREIGN KEY (round_id) REFERENCES rounds(id),
-    FOREIGN KEY (archer_id) REFERENCES archers(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id),
-    UNIQUE (round_id, archer_id, category_id)
-);
-"""
-
-        self.json_example = '{"query": "SQL_QUERY_HERE"}'
+            self.json_example = '{"query": "SQL_QUERY_HERE"}'
+    
+    @classmethod
+    def get_instance(cls):
+        if cls._instance is None:
+            cls._instance = AzureOpenAIClient()
+        return cls._instance
     
     def generate_queries(self, user_message):
         messages = [
@@ -127,6 +140,7 @@ CREATE TABLE IF NOT EXISTS results (
         return completion.to_json()
     
     def prepare_query(self, json_response):
+        query=None
         try:
             data = json.loads(json_response).get('choices', [])[0].get('message', {}).get('content', '')
             cleaned_str = re.sub(r'```\w*\n|\n```', '', data).strip("'")
@@ -167,7 +181,7 @@ CREATE TABLE IF NOT EXISTS results (
                 conn.close()
         return results
 
-    def gerResponse(self, text):
+    def get_response(self, text):
         query_json = self.generate_queries(text)
         query = self.prepare_query(query_json)
         data = self.execute_queries(query)

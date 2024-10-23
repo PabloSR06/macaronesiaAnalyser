@@ -21,7 +21,7 @@ def json_to_database():
 
             subprocess.run(['c:/dev/macaronesiaAnalyser/.conda/python.exe', 'recognizer/save.py', pdf_path, location, year])
 
-            shutil.move(pdf_path, os.path.join(old_directory, filename))
+            # shutil.move(pdf_path, os.path.join(old_directory, filename))
 
             contador += 1
 

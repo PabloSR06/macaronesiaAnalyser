@@ -1,7 +1,7 @@
 import json
 import datetime
 import sys
-from recognizer.mySqlClient import MySqlClient
+from mySqlClient import MySqlClient
 
 def process_json(json_path, default_location, default_year):
     
@@ -13,7 +13,7 @@ def process_json(json_path, default_location, default_year):
     filename = json_path.split('/')[-1]
 
     mysql_client = MySqlClient()
-    mysql_client.connectDatabase()
+    mysql_client.create_connection()
     for idx, document in enumerate(result.get('analyzeResult', {}).get('documents', [])):
         
         fields = document.get('fields', {})
@@ -47,7 +47,7 @@ def process_json(json_path, default_location, default_year):
                         break
                     mysql_client.insert_result(round_id, archer_id, category_id, score)
 
-    mysql_client.closeConnection()
+    mysql_client.close_connection()
     print("-----------------------------------")
 
 if __name__ == "__main__":

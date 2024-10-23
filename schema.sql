@@ -1,5 +1,6 @@
 Drop database if exists macaronesia;
 CREATE DATABASE macaronesia;
+USE macaronesia;
 -- Clubs Table
 CREATE TABLE IF NOT EXISTS clubs (
     id INT AUTO_INCREMENT PRIMARY KEY,

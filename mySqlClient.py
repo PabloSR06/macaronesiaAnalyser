@@ -8,26 +8,44 @@ class MySqlClient:
         self.cursor = None
         self.conn = None
 
-    def connectDatabase(self):
-
-        self.conn = mysql.connector.connect(
+    def get_reader_connection(self):
+        return mysql.connector.connect(
             host=os.getenv('DB_HOST'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
+            user=os.getenv('DB_USER_READER'),
+            password=os.getenv('DB_PASSWORD_READER'),
             port=os.getenv('DB_PORT'),
             database=os.getenv('DB_NAME')
         )
+    
+    def create_connection(self):
+        if self.conn is None or not self.conn.is_connected():
+            try:
+                self.conn = mysql.connector.connect(
+                    host=os.getenv('DB_HOST'),
+                    user=os.getenv('DB_USER'),
+                    password=os.getenv('DB_PASSWORD'),
+                    port=os.getenv('DB_PORT')
+                )
+                self.cursor = self.conn.cursor()
+                self.cursor.execute("SHOW DATABASES LIKE %s", (os.getenv('DB_NAME'),))
+                result = self.cursor.fetchone()
 
-        self.cursor = self.conn.cursor()
+                if not result:
+                
+                    with open('schema.sql', 'r') as schema_file:
+                        schema_sql = schema_file.read()
 
-        with open('schema.sql', 'r') as schema_file:
-            schema_sql = schema_file.read()
+                    for statement in schema_sql.split(';'):
+                        if statement.strip():
+                            self.cursor.execute(statement)
+                else:
+                    self.conn.database = os.getenv('DB_NAME')
 
-        for statement in schema_sql.split(';'):
-            if statement.strip():
-                self.cursor.execute(statement)
+            except mysql.connector.Error as err:
+                print(f"Error: No se pudo crear la base de datos: {err}")
 
-    def closeConnection(self):
+
+    def close_connection(self):
         self.cursor.close()
         self.conn.close()
 
@@ -48,7 +66,7 @@ class MySqlClient:
             return result[0]
 
         self.cursor.execute("INSERT INTO archers (name, club_id) VALUES (%s, %s)", (archer_name, club_id))
-        self.cursor.commit()
+        self.conn.commit()
         return self.cursor.lastrowid
 
     def get_category_id(self, category_name):
@@ -58,7 +76,7 @@ class MySqlClient:
             return result[0]
         
         self.cursor.execute("INSERT INTO categories (name) VALUES (%s)", (category_name,))
-        self.cursor.commit()
+        self.conn.commit()
         return self.cursor.lastrowid
 
     def get_season_id(self, year, location):
@@ -68,7 +86,7 @@ class MySqlClient:
             return result[0]
 
         self.cursor.execute("INSERT INTO seasons (year, location) VALUES (%s, %s)", (year, location))
-        self.cursor.commit()
+        self.conn.commit()
         return self.cursor.lastrowid
 
     def get_round_id(self, season_id, round_number, round_date):
@@ -78,12 +96,15 @@ class MySqlClient:
             return result[0]
         
         self.cursor.execute("INSERT INTO rounds (season_id, round_number, round_date) VALUES (%s, %s, %s)", (season_id, round_number, round_date))
-        self.cursor.commit()
+        self.conn.commit()
         return self.cursor.lastrowid
 
     def insert_result(self, round_id, archer_id, category_id, score):
         try:
             self.cursor.execute("INSERT INTO results (round_id, archer_id, category_id, score) VALUES (%s, %s, %s, %s)", (round_id, archer_id, category_id, score))
-            self.cursor.commit()
+            self.conn.commit()
         except Exception as e:
             print(f"Error al insertar el resultado: {e}")
+
+    def __del__(self):
+        self.close_connection()

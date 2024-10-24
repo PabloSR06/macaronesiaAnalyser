@@ -83,7 +83,7 @@ class AzureOpenAIClient:
     );
     """
 
-            self.json_example = '{"query": "SQL_QUERY_HERE"}'
+            self.json_example = '{"queries": ["SQL_QUERY_HERE"]}'
     
     @classmethod
     def get_instance(cls):
@@ -95,7 +95,7 @@ class AzureOpenAIClient:
         messages = [
             {
                 "role": "system",
-                "content": f"Teniendo en cuenta el esquema de la base de datos MYSQL, convierte la consulta en lenguaje natural a una consulta SQL que maneje coincidencias parciales en nombres y proporciona solo la consulta SQL en formato JSON. La consulta debe devolver los datos solicitados basándose en los nombres proporcionados por el usuario. Aquí está el esquema de la base de datos: {self.sql_script} La consulta SQL debe buscar todos los nombres que contengan la subcadena especificada por el usuario. Por ejemplo, si el usuario solicita información sobre 'pepe', la consulta debe utilizar LIKE '%pepe%' para manejar coincidencias parciales. No puedes eliminar, actualiazar o crear datos. Proporciona la salida solo en el siguiente formato JSON: {self.json_example}"
+                "content": f"Teniendo en cuenta el esquema de la base de datos MYSQL, convierte la consulta en lenguaje natural a una consulta SQL que maneje coincidencias parciales en nombres y proporciona solo la consulta SQL en formato JSON. La consulta debe devolver los datos solicitados basándose en los nombres proporcionados por el usuario. Aquí está el esquema de la base de datos: {self.sql_script} La consulta SQL debe buscar todos los nombres que contengan la subcadena especificada por el usuario. Por ejemplo, si el usuario solicita información sobre 'pepe', la consulta debe utilizar LIKE '%pepe%' para manejar coincidencias parciales. No puedes eliminar, actualiazar o crear datos. Proporciona la salida solo en el siguiente formato JSON: {self.json_example}. Puesde usar varias consultas, pero tienen que ser individuales. "
             },
             {
                 "role": "user",
@@ -140,15 +140,15 @@ class AzureOpenAIClient:
         return completion.to_json()
     
     def prepare_query(self, json_response):
-        query=None
+        queries=None
         try:
             data = json.loads(json_response).get('choices', [])[0].get('message', {}).get('content', '')
             cleaned_str = re.sub(r'```\w*\n|\n```', '', data).strip("'")
-            query = json.loads(cleaned_str)
+            queries = json.loads(cleaned_str)
         except (IndexError, KeyError, json.JSONDecodeError) as e:
             print(f"Error processing JSON response: {e}")
             json_data = {}
-        return query
+        return queries
     
     def prepare_response(self, json_response):
         try:
@@ -159,16 +159,19 @@ class AzureOpenAIClient:
             json_data = {}
         return data
     
-    def execute_queries(self, query):
+    def execute_queries(self, queries):
         conn = None
         cursor = None
+        results = []
         try:
             conn = self.sql_client.get_reader_connection()
             cursor = conn.cursor()
            
-            print(f"Executing query: {query.get('query')}")
-            cursor.execute(query.get('query'))
-            results = cursor.fetchall()
+            for query in queries.get('queries'):
+
+                print(f"Executing query: {query}")
+                cursor.execute(query)
+                results.extend(cursor.fetchall())
             conn.commit()
         except Exception as err:
             print(f"Error: {err}")
@@ -190,4 +193,6 @@ class AzureOpenAIClient:
         return response
 
 
-
+# client = AzureOpenAIClient.get_instance()
+# response = client.get_response("dame todos los clubes y que arquero de cada categoria es el mejor del club")
+# print(response)

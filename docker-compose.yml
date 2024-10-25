@@ -1,14 +1,14 @@
 
 services:
-    phpmyadmin:
-        image: phpmyadmin:latest
-        restart: always
-        ports:
-            - 8013:80
-        environment:
-            PMA_HOST: mysql
-        networks:
-            - my_network
+    # phpmyadmin:
+    #     image: phpmyadmin:latest
+    #     restart: always
+    #     ports:
+    #         - 8013:80
+    #     environment:
+    #         PMA_HOST: mysql
+    #     networks:
+    #         - my_network
     mysql:
         image: mysql:latest
         restart: on-failure
@@ -24,7 +24,7 @@ services:
         networks:
             - my_network
     api:
-        build: .
+        build: ghcr.io/pablosr06/macaronesiaanalyser:main
         restart: always
         ports:
             - "5000:8080"

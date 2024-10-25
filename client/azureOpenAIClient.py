@@ -4,7 +4,7 @@ import re
 from dotenv import load_dotenv
 from openai import AzureOpenAI
 
-from mySqlClient import MySqlClient
+from client.mySqlClient import MySqlClient
 
 
 load_dotenv()
@@ -119,7 +119,7 @@ class AzureOpenAIClient:
         messages = [
             {
                 "role": "system",
-                "content": f"Usa los datos proporcionados para responder dinámicamente a las preguntas del usuario. Tu tarea es procesar estos datos y proporcionar una respuesta clara y precisa según la pregunta del usuario."
+                "content": f"Usa los datos proporcionados para responder dinámicamente a las preguntas del usuario. Tu tarea es procesar estos datos y proporcionar una respuesta clara y precisa según la pregunta del usuario. El tema principal es el tiro con arco, si no tienes datos limitate a decir que no puedes responder que lo intenten con otras palabras tampoco sugieras a que te sigan preguntando"
             },
             {
                 "role": "user",
@@ -175,19 +175,52 @@ class AzureOpenAIClient:
             conn.commit()
         except Exception as err:
             print(f"Error: {err}")
-            return None
+            return [], err
 
         finally:
             if cursor:
                 cursor.close()
             if conn:
                 conn.close()
-        return results
+        return results, None
 
+    def review_queries(self, user_message, queries, error):
+        messages = [
+            {
+                "role": "system",
+                "content": f"Tu tarea es revisar y generar consultas si para la pregunta del usuario se han generado las consultas SQL correctas. teniendo en cuenta el esquema de la base de datos: {self.sql_script} Proporciona la salida solo en el siguiente formato JSON: {self.json_example}. Revisa que tu respuesta sea correcta y si no lo es, genera una nueva consulta SQL. Puedes usar varias consultas, pero tienen que ser individuales."
+            },
+            {
+                "role": "user",
+                "content": "La pregunta es: " + user_message  + " y las queries son: " + str(queries) + "el error es:" + str(error)
+            },
+        ]
+        completion = self.client.chat.completions.create(  
+        model=self.deployment,  
+        messages=messages,  
+        max_tokens=800,  
+        temperature=0.7,  
+        top_p=0.95,  
+        frequency_penalty=0,  
+        presence_penalty=0,  
+        stop=None,  
+        stream=False  
+      )
+        return completion.to_json()
+    
     def get_response(self, text):
+        data = []
         query_json = self.generate_queries(text)
-        query = self.prepare_query(query_json)
-        data = self.execute_queries(query)
+        queries = self.prepare_query(query_json)
+        data, query_error = self.execute_queries(queries)
+        if len(data) == 0:
+            query_json = self.review_queries(text, queries, query_error)
+            queries = self.prepare_query(query_json)
+            if len(queries.get('queries'))==0:
+                return "No se pudo generar la respuesta, intetelo con otras palabras"
+            else:
+                data, query_error = self.execute_queries(queries)
+
         response_json = self.generate_response(text, data)
         response = self.prepare_response(response_json)
         return response

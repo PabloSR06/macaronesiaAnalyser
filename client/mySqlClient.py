@@ -1,3 +1,4 @@
+from sqlite3 import DatabaseError
 import mysql.connector
 import os
 
@@ -20,6 +21,21 @@ class MySqlClient:
         if cls._instance is None:
             cls._instance = MySqlClient()
         return cls._instance
+
+    def health_check(self):
+        try:
+            result =  self.create_connection()
+            if result is not None:
+                return result._full_msg
+            if self.conn is None or not self.conn.is_connected():
+                return "Database not connected"
+            else:
+                return "Database connected"
+                
+        except Exception as e:
+            return f"Database error: {e}"
+        finally:
+            self.close_connection()
 
     def get_reader_connection(self):
         return mysql.connector.connect(
@@ -55,6 +71,7 @@ class MySqlClient:
                     self.conn.database = os.getenv('DB_NAME')
 
             except mysql.connector.Error as err:
+                return err
                 print(f"Error: No se pudo crear la base de datos: {err}")
 
     def close_connection(self):

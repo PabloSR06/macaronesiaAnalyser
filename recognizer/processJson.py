@@ -4,7 +4,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from mySqlClient import MySqlClient
+from client.mySqlClient import MySqlClient
 
 def process_json(json_path, default_location, default_year):
     

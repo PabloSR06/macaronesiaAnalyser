@@ -2,6 +2,9 @@ import os
 import subprocess
 import shutil
 
+from recognizer.processJson import process_json # type: ignore
+
+
 def json_to_database():
     pdf_directory = 'recognizer/json/'
     old_directory = 'recognizer/json/old/'
@@ -19,9 +22,10 @@ def json_to_database():
 
             print(f"Procesando archivo {contador}: {filename}")
 
-            subprocess.run(['c:/dev/macaronesiaAnalyser/.conda/python.exe', 'recognizer/processJson.py', pdf_path, location, year])
-
+            # subprocess.run(['c:/dev/macaronesiaAnalyser/.conda/python.exe', 'recognizer/processJson.py', pdf_path, location, year])
+            # subprocess.run(['.conda/python.exe', 'recognizer/processJson.py', pdf_path, location, year])
             # shutil.move(pdf_path, os.path.join(old_directory, filename))
+            process_json(pdf_path, location, year)
 
             contador += 1
 

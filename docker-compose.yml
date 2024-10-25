@@ -1,33 +1,43 @@
+
 services:
     phpmyadmin:
         image: phpmyadmin:latest
         restart: always
         ports:
-            - 8000:80
+            - 8013:80
         environment:
             PMA_HOST: mysql
+        networks:
+            - my_network
     mysql:
         image: mysql:latest
-        restart: always
+        restart: on-failure
         environment:
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
         ports:
             - "3307:3306"
-        command: >
-            sh -c 'exec mysqld --init-file=/init-scripts/init-db.sql'
         volumes:
-            - ./init-db.sql:/init-scripts/init-db.sql
-            - data:/var/lib/mysql
-    # api:
-    #     build: .
-    #     restart: always
-    #     ports:
-    #         - "5000:5000"
-    #     volumes:
-    #         - .:/app
-    #     command: python /app/app.py
-    #     env_file:
-    #         - .env
-volumes:
-    data:
-        driver: local
+            - ./mysql-data:/var/lib/mysql
+            - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+        # command: >
+        #     sh -c 'exec mysqld --init-file=/docker-entrypoint-initdb.d/init.sql'
+        networks:
+            - my_network
+    api:
+        build: .
+        restart: always
+        ports:
+            - "5000:8080"
+        volumes:
+            - .:/app
+        command: python /app/app.py
+        env_file:
+            - .env
+        depends_on:
+            - mysql
+        networks:
+            - my_network
+
+networks:
+  my_network:
+    driver: bridge

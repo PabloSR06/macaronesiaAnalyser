@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>Centro de preguntas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="responseContainer"  id="responseContainer" hidden>
+            <p id="response"></p>
+        </div>
+        <div id="spinner" class="spinner" hidden></div>
+        <form class="inputForm" onsubmit="return fetchData(event)">
+            <input class="inputText" type="text" id="question" placeholder="Escribe algo..." required>
+            <button class="inputButton" type="submit">Enviar</button>
+        </form>
+
+    </div>
+    <footer class="footer">
+        <a href="https://github.com/pablosr06/" target="_blank">Pablo Suárez Romero GitHub</a>
+    </footer>
+
+
+
+    <script>
+        function fetchData(event) {
+            event.preventDefault();
+
+            const input = document.getElementById('question');
+            const button = document.querySelector('button');
+            const spinner = document.getElementById('spinner');
+            const response = document.getElementById('response');
+            const responseContainer = document.getElementById('responseContainer');
+
+            const question = input.value;
+
+            input.disabled = true;
+            button.disabled = true;
+
+            responseContainer.hidden = true;
+            spinner.hidden = false;
+
+            fetch(`/api/ask/}`, {
+    method: 'POST', 
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ question: question })
+})
+    .then(response => response.json())
+    .then(data => {
+        responseContainer.hidden = false;
+        response.innerText = `${data.response}`;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        response.innerText = 'Ocurrió un error. Por favor intente de nuevo.';
+    })
+    .finally(() => {
+        input.disabled = false;
+        button.disabled = false;
+        input.value = '';
+        spinner.hidden = true;
+    });
+;
+        }
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

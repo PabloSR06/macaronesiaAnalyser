@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, request
-from azureOpenAIClient import AzureOpenAIClient
+from flask import Flask, jsonify, request, render_template
 
+from client.azureOpenAIClient import AzureOpenAIClient
+
+from client.mySqlClient import MySqlClient
 from recognizer.saveInDatabase import json_to_database # type: ignore
 
 
@@ -35,9 +37,17 @@ def process_json():
 
 @app.route('/')
 def index():
-    return jsonify({
-        "message": "Para hacer una pregunta, ve a la URL /api/ask/<question>"
-    })
+    return render_template('index.html')
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+
+@app.route('/api/health/database', methods=['GET'])
+def health_database():
+    client = MySqlClient.get_instance()
+    response = client.health_check()
+    return response
+
+
+if __name__ == "__main__":
+    #app.run(host='0.0.0.0' , debug=True, port=8080)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)

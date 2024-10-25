@@ -2,5 +2,4 @@
 .vscode
 .conda
 __pycache__
-recognizer/pdf/oldpdf
 mysql-data

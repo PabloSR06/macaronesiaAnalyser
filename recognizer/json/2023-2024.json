@@ -1,0 +1,1253 @@
+{
+	"status": "succeeded",
+	"createdDateTime": "2024-10-22T13:28:26Z",
+	"lastUpdatedDateTime": "2024-10-22T13:28:30Z",
+	"analyzeResult": {
+		"apiVersion": "2023-07-31",
+		"modelId": "macaronesia-v2",
+		"stringIndexType": "utf16CodeUnit",
+		"content": "LIGA MACARONESIA\nCLASIFICACIÓN PROMOCION ADULTOS\nPUNTOS (3 mejores)\nPUNTOS (3 mejores)\nClasif.\nDeportista\nClub\nDivisión\n1º\n2º\n3º\n4º\n5º\n6º\nTOTAL\nPODIUM\n1\nYamilé Melián Rodríguez\nCLUB TENERARCO\nPrecisión\n531\n522\n542\n542\n551\n552\n1645\n1645\n2\nAndrea Vargas Díaz-Cruz\nCLUB TENERARCO\nTradicional\n295\n359\n342\n392\n429\n1180\n1180\n3\nTradicional\nCLASIFICACIÓN MENORES 17 AÑOS\nPUNTOS\n(3 mejores)\nPUNTOS (3 mejores)\nClasif.\nDeportista\nClub\nDivisión\n1º\n2º\n3º\n4º\n5º\n6º\nTOTAL\nPODIUM\n1\nSaray Morales Quintero\nCLUB TENERARCO\nPrecisión\n522\n541\n538\n1601\n1601\n2\nAinara Fernández Martínez\nCLUB BRETEMAS\nPrecisión\n525\n528\n1053\n3\nTradicional\nPUNTOS\nPUNTOS\n(3 mejores)\n(3 mejores)\nCLASIFICACIÓN MENORES 14 AÑOS\nClasif.\nDeportista\nClub\nDivisión\n1º\n2º\n3º\n4º\n5º\n6º\nTOTAL\nPODIUM\n1\nDiego Tallo Santos\nCLUB TENERARCO\nPrecisión\n494\n489\n386\n416\n424\n1407\n1407\n2\nJoel Mesa Martín\nCLUB TENERARCO\nTradicional\n212\n287\n301\n343\n324\n402\n1069\n1069\n3\nPrecisión\nPODIUM (*): Para la clasificación de Podium sólo se tienen en cuenta aquellos deportistas que han completado al menos cuatro (4) tiradas en la misma división\nHoja 3 de 3",
+		"documents": [
+			{
+				"docType": "macaronesia-v2",
+				"boundingRegions": [
+					{
+						"pageNumber": 1,
+						"polygon": [
+							0,
+							0,
+							11.6806,
+							0,
+							11.6806,
+							8.2639,
+							0,
+							8.2639
+						]
+					}
+				],
+				"fields": {
+					"points": {
+						"type": "array",
+						"valueArray": [
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "531",
+										"content": "531",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8403,
+													1.3613,
+													6.0279,
+													1.3638,
+													6.0264,
+													1.4753,
+													5.8388,
+													1.4728
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 202,
+												"length": 3
+											}
+										]
+									},
+									"2": {
+										"type": "string",
+										"valueString": "522",
+										"content": "522",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													6.474,
+													1.3638,
+													6.6717,
+													1.3638,
+													6.6717,
+													1.4753,
+													6.474,
+													1.4753
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 206,
+												"length": 3
+											}
+										]
+									},
+									"3": {
+										"type": "string",
+										"valueString": "542",
+										"content": "542",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.1077,
+													1.3638,
+													7.3054,
+													1.3586,
+													7.3084,
+													1.4753,
+													7.1107,
+													1.4805
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 210,
+												"length": 3
+											}
+										]
+									},
+									"4": {
+										"type": "string",
+										"valueString": "542",
+										"content": "542",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.7465,
+													1.3587,
+													7.9442,
+													1.3587,
+													7.9442,
+													1.4804,
+													7.7465,
+													1.4804
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 214,
+												"length": 3
+											}
+										]
+									},
+									"5": {
+										"type": "string",
+										"valueString": "551",
+										"content": "551",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													8.3751,
+													1.3638,
+													8.5728,
+													1.3638,
+													8.5728,
+													1.4753,
+													8.3751,
+													1.4753
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 218,
+												"length": 3
+											}
+										]
+									},
+									"6": {
+										"type": "string",
+										"valueString": "552",
+										"content": "552",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													9.0088,
+													1.3638,
+													9.2065,
+													1.3638,
+													9.2065,
+													1.4753,
+													9.0088,
+													1.4753
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 222,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Yamilé Melián Rodríguez",
+										"content": "Yamilé Melián Rodríguez",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.2117,
+													1.3545,
+													2.5206,
+													1.3638,
+													2.5196,
+													1.5007,
+													1.2108,
+													1.4914
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 153,
+												"length": 23
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB TENERARCO",
+										"content": "CLUB TENERARCO",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.0976,
+													1.3498,
+													4.1581,
+													1.3587,
+													4.157,
+													1.4893,
+													3.0965,
+													1.4803
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 177,
+												"length": 14
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Precisión",
+										"content": "Precisión",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.7097,
+													1.3587,
+													5.223,
+													1.3638,
+													5.2218,
+													1.4855,
+													4.7085,
+													1.4804
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 192,
+												"length": 9
+											}
+										]
+									}
+								}
+							},
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "295",
+										"content": "295",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8555,
+													1.5514,
+													6.0329,
+													1.5514,
+													6.0329,
+													1.6578,
+													5.8555,
+													1.6578
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 289,
+												"length": 3
+											}
+										]
+									},
+									"3": {
+										"type": "string",
+										"valueString": "359",
+										"content": "359",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.1163,
+													1.5514,
+													7.3039,
+													1.5488,
+													7.3054,
+													1.6603,
+													7.1178,
+													1.6629
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 293,
+												"length": 3
+											}
+										]
+									},
+									"4": {
+										"type": "string",
+										"valueString": "342",
+										"content": "342",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.7566,
+													1.5514,
+													7.9442,
+													1.5514,
+													7.9442,
+													1.6629,
+													7.7566,
+													1.6629
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 297,
+												"length": 3
+											}
+										]
+									},
+									"5": {
+										"type": "string",
+										"valueString": "392",
+										"content": "392",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													8.3853,
+													1.5514,
+													8.5779,
+													1.5514,
+													8.5779,
+													1.6629,
+													8.3853,
+													1.6629
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 301,
+												"length": 3
+											}
+										]
+									},
+									"6": {
+										"type": "string",
+										"valueString": "429",
+										"content": "429",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													9.0139,
+													1.5514,
+													9.2065,
+													1.5514,
+													9.2065,
+													1.6629,
+													9.0139,
+													1.6629
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 305,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Andrea Vargas Díaz-Cruz",
+										"content": "Andrea Vargas Díaz-Cruz",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.1914,
+													1.5398,
+													2.5406,
+													1.5463,
+													2.5399,
+													1.6897,
+													1.1907,
+													1.6832
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 238,
+												"length": 23
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB TENERARCO",
+										"content": "CLUB TENERARCO",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.0976,
+													1.545,
+													4.1575,
+													1.5489,
+													4.157,
+													1.6769,
+													3.0971,
+													1.6731
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 262,
+												"length": 14
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Tradicional",
+										"content": "Tradicional",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.659,
+													1.5489,
+													5.2923,
+													1.5463,
+													5.2928,
+													1.6731,
+													4.6595,
+													1.6757
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 277,
+												"length": 11
+											}
+										]
+									}
+								}
+							},
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "522",
+										"content": "522",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8403,
+													2.4994,
+													6.0329,
+													2.4994,
+													6.0329,
+													2.6059,
+													5.8403,
+													2.6059
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 515,
+												"length": 3
+											}
+										]
+									},
+									"2": {
+										"type": "string",
+										"valueString": "541",
+										"content": "541",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													6.4755,
+													2.4968,
+													6.6581,
+													2.4994,
+													6.6565,
+													2.611,
+													6.474,
+													2.6084
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 519,
+												"length": 3
+											}
+										]
+									},
+									"3": {
+										"type": "string",
+										"valueString": "538",
+										"content": "538",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.1077,
+													2.4944,
+													7.3105,
+													2.4944,
+													7.3105,
+													2.6161,
+													7.1077,
+													2.6161
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 523,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Saray Morales Quintero",
+										"content": "Saray Morales Quintero",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.2573,
+													2.4944,
+													2.474,
+													2.4944,
+													2.474,
+													2.6262,
+													1.2573,
+													2.6262
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 467,
+												"length": 22
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB TENERARCO",
+										"content": "CLUB TENERARCO",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.1026,
+													2.4853,
+													4.1581,
+													2.4944,
+													4.157,
+													2.6252,
+													3.1015,
+													2.6161
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 490,
+												"length": 14
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Precisión",
+										"content": "Precisión",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.7097,
+													2.4969,
+													5.2237,
+													2.5045,
+													5.2218,
+													2.6313,
+													4.7078,
+													2.6236
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 505,
+												"length": 9
+											}
+										]
+									}
+								}
+							},
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "525",
+										"content": "525",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8403,
+													2.6921,
+													6.0329,
+													2.6921,
+													6.0329,
+													2.8087,
+													5.8403,
+													2.8087
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 589,
+												"length": 3
+											}
+										]
+									},
+									"3": {
+										"type": "string",
+										"valueString": "528",
+										"content": "528",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.1077,
+													2.6972,
+													7.3054,
+													2.6972,
+													7.3054,
+													2.8036,
+													7.1077,
+													2.8036
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 593,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Ainara Fernández Martínez",
+										"content": "Ainara Fernández Martínez",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.1559,
+													2.6921,
+													2.5754,
+													2.6921,
+													2.5754,
+													2.8087,
+													1.1559,
+													2.8087
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 539,
+												"length": 25
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB BRETEMAS",
+										"content": "CLUB BRETEMAS",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.1432,
+													2.687,
+													4.1217,
+													2.687,
+													4.1217,
+													2.8087,
+													3.1432,
+													2.8087
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 565,
+												"length": 13
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Precisión",
+										"content": "Precisión",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.7097,
+													2.6895,
+													5.2224,
+													2.6921,
+													5.2218,
+													2.8138,
+													4.7091,
+													2.8112
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 579,
+												"length": 9
+											}
+										]
+									}
+								}
+							},
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "494",
+										"content": "494",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8453,
+													3.6402,
+													6.0279,
+													3.6402,
+													6.0279,
+													3.7517,
+													5.8453,
+													3.7517
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 794,
+												"length": 3
+											}
+										]
+									},
+									"2": {
+										"type": "string",
+										"valueString": "489",
+										"content": "489",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													6.4791,
+													3.6377,
+													6.6732,
+													3.6402,
+													6.6717,
+													3.7517,
+													6.4777,
+													3.7491
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 798,
+												"length": 3
+											}
+										]
+									},
+									"4": {
+										"type": "string",
+										"valueString": "386",
+										"content": "386",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.7465,
+													3.6402,
+													7.9341,
+													3.6402,
+													7.9341,
+													3.7517,
+													7.7465,
+													3.7517
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 802,
+												"length": 3
+											}
+										]
+									},
+									"5": {
+										"type": "string",
+										"valueString": "416",
+										"content": "416",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													8.3802,
+													3.6377,
+													8.5743,
+													3.6402,
+													8.5728,
+													3.7568,
+													8.3787,
+													3.7542
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 806,
+												"length": 3
+											}
+										]
+									},
+									"6": {
+										"type": "string",
+										"valueString": "424",
+										"content": "424",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													9.0038,
+													3.6148,
+													9.2218,
+													3.6123,
+													9.2237,
+													3.7796,
+													9.0057,
+													3.7821
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 810,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Diego Tallo Santos",
+										"content": "Diego Tallo Santos",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.3688,
+													3.63,
+													2.3625,
+													3.63,
+													2.3625,
+													3.772,
+													1.3688,
+													3.772
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 750,
+												"length": 18
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB TENERARCO",
+										"content": "CLUB TENERARCO",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.0976,
+													3.6351,
+													4.1521,
+													3.6351,
+													4.1521,
+													3.7568,
+													3.0976,
+													3.7568
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 769,
+												"length": 14
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Precisión",
+										"content": "Precisión",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.7097,
+													3.6301,
+													5.2281,
+													3.6351,
+													5.2268,
+													3.7669,
+													4.7085,
+													3.7618
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 784,
+												"length": 9
+											}
+										]
+									}
+								}
+							},
+							{
+								"type": "object",
+								"valueObject": {
+									"1": {
+										"type": "string",
+										"valueString": "212",
+										"content": "212",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													5.8504,
+													3.8278,
+													6.0431,
+													3.8278,
+													6.0431,
+													3.9393,
+													5.8504,
+													3.9393
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 870,
+												"length": 3
+											}
+										]
+									},
+									"2": {
+										"type": "string",
+										"valueString": "287",
+										"content": "287",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													6.4841,
+													3.8302,
+													6.6666,
+													3.8328,
+													6.665,
+													3.9444,
+													6.4826,
+													3.9419
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 874,
+												"length": 3
+											}
+										]
+									},
+									"3": {
+										"type": "string",
+										"valueString": "301",
+										"content": "301",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.1077,
+													3.8278,
+													7.2971,
+													3.8226,
+													7.3003,
+													3.9393,
+													7.1109,
+													3.9445
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 878,
+												"length": 3
+											}
+										]
+									},
+									"4": {
+										"type": "string",
+										"valueString": "343",
+										"content": "343",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													7.7465,
+													3.8227,
+													7.9442,
+													3.8227,
+													7.9442,
+													3.9393,
+													7.7465,
+													3.9393
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 882,
+												"length": 3
+											}
+										]
+									},
+									"5": {
+										"type": "string",
+										"valueString": "324",
+										"content": "324",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													8.3853,
+													3.8328,
+													8.5678,
+													3.8328,
+													8.5678,
+													3.9393,
+													8.3853,
+													3.9393
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 886,
+												"length": 3
+											}
+										]
+									},
+									"6": {
+										"type": "string",
+										"valueString": "402",
+										"content": "402",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													9.0153,
+													3.8302,
+													9.2181,
+													3.8328,
+													9.2167,
+													3.9444,
+													9.0139,
+													3.9418
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 890,
+												"length": 3
+											}
+										]
+									},
+									"Deportista": {
+										"type": "string",
+										"valueString": "Joel Mesa Martín",
+										"content": "Joel Mesa Martín",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													1.4195,
+													3.8227,
+													2.3016,
+													3.8227,
+													2.3016,
+													3.9444,
+													1.4195,
+													3.9444
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 826,
+												"length": 16
+											}
+										]
+									},
+									"Club": {
+										"type": "string",
+										"valueString": "CLUB TENERARCO",
+										"content": "CLUB TENERARCO",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													3.1026,
+													3.8214,
+													4.1575,
+													3.8253,
+													4.1571,
+													3.9483,
+													3.1022,
+													3.9444
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 843,
+												"length": 14
+											}
+										]
+									},
+									"División": {
+										"type": "string",
+										"valueString": "Tradicional",
+										"content": "Tradicional",
+										"boundingRegions": [
+											{
+												"pageNumber": 1,
+												"polygon": [
+													4.6641,
+													3.8227,
+													5.2978,
+													3.8227,
+													5.2978,
+													3.9494,
+													4.6641,
+													3.9494
+												]
+											}
+										],
+										"spans": [
+											{
+												"offset": 858,
+												"length": 11
+											}
+										]
+									}
+								}
+							}
+						]
+					},
+					"location": {
+						"type": "string",
+						"confidence": 0.884
+					},
+					"year": {
+						"type": "string",
+						"confidence": 0.793
+					}
+				},
+				"confidence": 0.997,
+				"spans": [
+					{
+						"offset": 0,
+						"length": 1085
+					}
+				]
+			}
+		]
+	}
+}

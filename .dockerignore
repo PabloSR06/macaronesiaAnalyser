@@ -3,3 +3,6 @@
 .conda
 __pycache__
 mysql-data
+.env-example
+.github
+.gitignore

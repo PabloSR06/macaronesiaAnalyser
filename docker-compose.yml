@@ -1,14 +1,4 @@
-
 services:
-    # phpmyadmin:
-    #     image: phpmyadmin:latest
-    #     restart: always
-    #     ports:
-    #         - 8013:80
-    #     environment:
-    #         PMA_HOST: mysql
-    #     networks:
-    #         - my_network
     mysql:
         image: mysql:latest
         restart: on-failure
@@ -19,8 +9,6 @@ services:
         volumes:
             - ./mysql-data:/var/lib/mysql
             - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
-        # command: >
-        #     sh -c 'exec mysqld --init-file=/docker-entrypoint-initdb.d/init.sql'
         networks:
             - my_network
     api:
@@ -28,9 +16,6 @@ services:
         restart: always
         ports:
             - "5000:8080"
-        volumes:
-            - .:/app
-        command: python /app/app.py
         env_file:
             - .env
         depends_on:

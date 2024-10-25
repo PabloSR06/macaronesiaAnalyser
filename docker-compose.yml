@@ -24,7 +24,7 @@ services:
         networks:
             - my_network
     api:
-        build: ghcr.io/pablosr06/macaronesiaanalyser:main
+        image: ghcr.io/pablosr06/macaronesiaanalyser:main
         restart: always
         ports:
             - "5000:8080"

@@ -23,6 +23,7 @@ In summary, transforming the PDF data into a structured format and storing it in
 ## Index
 
 - [Introduction](#introduction)
+- [Demo](#demo)
 - [Main Files](#main-files)
 - [Installation](#installation)
 - [Run with Docker](#run-with-docker)
@@ -51,9 +52,9 @@ In this demo, we will showcase the process of transforming a user's question int
     ![Answer](static/image-2.png)
 
 This demo illustrates how we can leverage Azure OpenAI to automate complex data analysis tasks, making it easier to extract valuable insights from the data.
-![Question](static/image-0.png)
-![Process](static/image-1.png)
-![Anwer](static/image-2.png)
+
+
+
 ## Main Files
 
 - **[app.py](app.py)**: Main file that starts the Flask server and defines the API routes.

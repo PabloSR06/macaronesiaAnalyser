@@ -46,10 +46,10 @@ In this demo, we will showcase the process of transforming a user's question int
     ![Question](static/image-0.png)
 
 2. **Transformation to SQL**: Azure OpenAI processes the question and generates the corresponding SQL query based on the database schema.
-    ![Process](static/image-1.png)
+    ![Process](static/image-2.png)
 
 3. **Result**: The generated SQL query is executed on the MySQL database, and the results are presented to the user.
-    ![Answer](static/image-2.png)
+    ![Answer](static/image-1.png)
 
 This demo illustrates how we can leverage Azure OpenAI to automate complex data analysis tasks, making it easier to extract valuable insights from the data.
 
